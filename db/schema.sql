@@ -4,25 +4,13 @@ CREATE DATABASE movies_db;
 
 USE movies_db;
 
-CREATE TABLE `watchlist` (
-  `id` Int( 11 ) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  `watchlist_title` VARCHAR( 255) NOT NULL,
-  `already_watched` BOOLEAN DEFAULT false,
-  `created_at` DATETIME NOT NULL
-  );
-
-
-CREATE TABLE `watched` (
-  `id` Int( 11 ) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  `watched_title` VARCHAR( 255) NOT NULL,
-  `already_watched` BOOLEAN DEFAULT true,
-  `review` VARCHAR(500),
-  `created_at` DATETIME NOT NULL
-);
-
-
-CREATE TABLE `favorites` (
-  `id` Int( 11 ) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  `fav_title` VARCHAR( 255) NOT NULL,
-  `created_at` DATETIME NOT NULL
+CREATE TABLE movies (
+id INT NOT NULL auto_increment PRIMARY KEY,
+title VARCHAR (300) NOT NULL,
+release_year VARCHAR (140) NOT NULL,
+rating VARCHAR (40) NOT NULL,
+genre VARCHAR (120) NOT NULL,
+-- rotten_tomatoes VARCHAR (120) NOT NULL,
+favorite BOOLEAN DEFAULT false,
+want_to_watch BOOLEAN DEFAULT false
 );
