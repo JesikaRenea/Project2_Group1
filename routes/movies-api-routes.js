@@ -5,6 +5,7 @@ module.exports = function(app) {
   app.get("/api/movies", function(req, res) {
     db.Movie.findAll({}).then(function(dbMovies) {
       res.json(dbMovies);
+      // res.render("user-profile", { movies: dbMovies });
     });
   });
   //Displays only favorite = true movies (favorites)
@@ -31,13 +32,15 @@ module.exports = function(app) {
   // POST route for saving a new movie
   app.post("/api/movies", function(req, res) {
     console.log(req.body);
+    console.log(req.user);
     db.Movie.create({
       title: req.body.title,
       releaseDate: req.body.releaseDate,
       rating: req.body.rating,
       genre: req.body.genre,
       favorite: req.body.favorite,
-      wantToWatch: req.body.wantToWatch
+      wantToWatch: req.body.wantToWatch,
+      UserId: req.user.id
     }).then(function(dbMovieFav) {
       res.json(dbMovieFav);
     });

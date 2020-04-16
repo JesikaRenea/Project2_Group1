@@ -213,6 +213,7 @@ function allOutNow(){
 function searched(){
   $('.button').on("click",(event)=>{
     event.preventDefault()
+
   
     const searchedMovie = $('.searchBox').val().trim().split(" ").join("+")
   
@@ -228,6 +229,7 @@ function searched(){
   
     })
 } 
+
   
 function genres(){
   if(res.results[i].genre_ids == 28){
@@ -289,3 +291,5 @@ function genres(){
   }
 
 }
+
+searched();

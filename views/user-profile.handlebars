@@ -1,0 +1,123 @@
+<div class="columns">
+    <div class="column is-one-half">
+
+        <h3 class="sectionFont is-size-3">User Profile</h3>
+
+        <br>
+
+        <div class="profile-container">
+            <h3 class="sectionFont is-size-3">Watchlist</h3>
+
+            <ul>
+                {{#each Movies}}
+                {{#if wantToWatch}}
+
+                <li class="movie-watchlist">
+                    {{title}}
+                    <br>
+                    <button class="addToFavorites" data-id="{{this.id}}">Add To Favorites</button>
+
+                    <button class="delete-movie" data-id="{{this.id}}">Delete Movie</button>
+                </li>
+
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <br>
+
+        <div class="profile-container">
+            <h3 class="sectionFont is-size-3">Favorites</h3>
+
+            <ul>
+                {{#each Movies}}
+                {{#if favorite}}
+
+                <li class="movie-favorite">
+                    {{title}}
+                    <br>
+                    <button class="addToWatchlist" data-id="{{this.id}}">Add To Watchlist</button>
+
+                    <button class="delete-movie" data-id="{{this.id}}">Delete Movie</button>
+                </li>
+
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <br>
+
+        <div class="profile-container">
+            <h3 class="sectionFont is-size-3">All Movies</h3>
+
+            <ul>
+                {{#each Movies}}
+                <li>
+                    {{this.title}}
+                    <br>
+                    <button class="addToWatchlist" data-id="{{this.id}}">Add To Watchlist</button>
+
+                    <button class="addToFavorites" data-id="{{this.id}}">Add To Favorites</button>
+
+                    <button class="delete-movie" data-id="{{this.id}}">Delete Movie</button>
+
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="columns">
+    <div class="column is-one-half">
+        <div class="profile-container">
+
+            <h3 class="sectionFont is-size-3">Search for a Movie</h3>
+
+            <div>
+                <label for="newmovie">Movie Title:</label>
+                <input class="searchBox" type="text" placeholder="inputMovies">
+                <button class="button">Search!</button>
+
+            </div>
+
+
+
+            <form class="create-form">
+
+                <div class="form-group">
+                    <label for="newmovie">Movie Title:</label>
+                    <input type="text" id="newmovie" name="title" class="searchBox">
+                </div>
+
+                <div class="form-group">
+                    <label for="list">List:</label><br>
+                    <input type="radio" name="wantToWatch" value="1" checked> Add to Watchlist<br>
+                    <input type="radio" name="favorite" value="1"> Add to Favorites
+                </div>
+
+                <button type="submit">Add Movie To List</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/logout">
+                Logout
+            </a>
+        </div>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="./js/movies.js"></script>
+<script src="./js/ajaxCalls.js"></script>
