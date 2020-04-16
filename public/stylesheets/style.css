@@ -2,3 +2,36 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.columns{
+  background-color: #d32323;
+  border-style: ridge;
+  border-color: rgb(255, 243, 73);
+  border-width: 3px;
+}
+
+body{
+  background-color: #011936;
+  font-family: 'Francois One', sans-serif;
+}
+.title{
+  color: #f4fffd;
+}
+
+.sectionFont{
+  color: rgb(219, 44, 0);
+  background-color: #011936a6;
+  padding: 2px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.moviePoster{
+  max-width: 200px;
+  max-height: 300px;
+  float: left;
+}
+
+.movieSections{
+  float: left;
+}
