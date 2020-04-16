@@ -130,6 +130,8 @@ function allPopularMovies(){
   })
 }
 
+
+
 function threeOutNow(){
   $.ajax({
     url: inTheatersQuery,
@@ -143,9 +145,9 @@ function threeOutNow(){
       if(imgURL){
         imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
 
-        var image =$('<img class="poster" alt= "Image Unavailable">').attr("src", imgURL);
+        var image =$('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
 
-        var movieDiv = $('<div class= "movie">');
+        var movieDiv = $('<div class= "column">');
 
         movieDiv.attr('data-title', res.results[i].title);
 
@@ -156,12 +158,24 @@ function threeOutNow(){
       <h5 class="overview">${res.results[i].overview}</h5>
         <h5 class="releaseDate">${res.results[i].release_date}</h5>
            <h5 class="popularity">${res.results[i].popularity}</h5>
-            <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>`
+            <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
+              <button><i class="fa fa-heart is-danger is-rounded"></i></button>
 
-          $('#movie').append(movieDiv).append(movieInfo)
+                <button><i class="fas fa-bookmark is-danger is-rounded"></i></button>`
+
+          $('#threeOutNow').append(movieDiv).append(movieInfo)
     }
   });
 } 
+
+
+threeOutNow()
+
+
+
+
+
+
 
 function allOutNow(){
   $.ajax({

@@ -21,22 +21,33 @@ body{
 .sectionFont{
   color: rgb(219, 44, 0);
   background-color: #011936a6;
+<<<<<<< HEAD
+  padding: 2px;
+  border-radius: 5px;
+  display: inline-block;
+=======
   padding: 5px;
   border-radius: 5px;
   display: inline-block;
   margin: 10px;
+>>>>>>> 8c3478a5f98111757ad53e27631e780e1ac10a24
 }
 
 .moviePoster{
   max-width: 200px;
   max-height: 300px;
   float: left;
+<<<<<<< HEAD
+=======
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+>>>>>>> 8c3478a5f98111757ad53e27631e780e1ac10a24
 }
 
 .movieSections{
   float: left;
+<<<<<<< HEAD
+=======
 }
 
 .profile-container {
@@ -59,4 +70,5 @@ h3 {
   position: relative;
   left: 160px;
   bottom: 295px;
+>>>>>>> 8c3478a5f98111757ad53e27631e780e1ac10a24
 }
