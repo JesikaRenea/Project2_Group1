@@ -243,9 +243,9 @@ function searched() {
              <h5 class="popularity">${res.results[i].popularity}</h5>
               <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
               <br>
-              <button class="fav" data-id="${res.results[i].id}">Add To Favorites</button>
+              <button class="favorite" data-id="${res.results[i].id}">Add To Favorites</button>
               <br>
-              <button class="wl" data-id="${res.results[i].id}">Add To Watchlist</button>
+              <button class="watchlist" data-id="${res.results[i].id}">Add To Watchlist</button>
               <br>
               `
 
@@ -254,45 +254,46 @@ function searched() {
         };
       })
   });
-  
 
-    $(".fav").click(()=>{
-      alert("Favorites button clicked");
-      let movieData = {
-        title: $(this).data("title"),
-          // plot:$("#plot").text(),
-          // poster: $("#image").attr("src")
-      }
-      $.post("/api/movies", movieData, function(data, status){
-          alert("Data: " + data + "\nStatus: " + status);
-        });
+  $(document).on("click", ".favorite", function (event) {
+    // alert("DOES THIS DO SOMETHING??");
+    event.preventDefault();
+    var newWatchlist = {
+      id: $(this).data("id"),
+      title: $(this).data(".title"),
+      wantToWatch: 1,
+      favorite: 0
+    };
+
+    console.log(newWatchlist);
+    // Send the PUT request.
+    $.ajax("/api/movies/", {
+      type: "POST",
+      data: newWatchlist
+    }).then(function() {
+      console.log("changed movie to", newWatchlist);
+      // Reload the page to get the updated list
+      // location.reload();
+    });
   });
+
+
+  $(document).on("click", ".watchlist", function (event) {
+    // alert("DOES THIS DO SOMETHING??");
+    event.preventDefault();
+    let movieData = {
+      id: $(this).data("id"),
+      title: $(this).data("title"),
+      watchlist: 1,
+      favorite: 0
+    }
+    $.post("/api/movies/", movieData, function (data, status) {
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+
 }
 
-$(".wl").on("click", function(event) {
-  event.preventDefault();
-  alert("click");
-
-  // var id = $(this).data("id");
-
-  var newWatchlist = {
-    id: $(this).data("id"),
-    title: $(this).data("title"),
-    wantToWatch: 1,
-    favorite: 0
-  };
-
-  console.log(newWatchlist);
-  // Send the PUT request.
-  $.ajax("/api/movies/", {
-    type: "POST",
-    data: newWatchlist
-  }).then(function() {
-    console.log("changed movie to", newWatchlist);
-    // Reload the page to get the updated list
-    location.reload();
-  });
-});
 
 function genres() {
   if (res.results[i].genre_ids == 28) {
