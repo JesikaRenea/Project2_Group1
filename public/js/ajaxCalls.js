@@ -1,7 +1,7 @@
 var currentDate = moment().format('YYYY-MM-DD')
 console.log(currentDate)
 
-var inTheatersQuery = "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=" + currentDate + "&api_key=c81ffb7ed9813dd7f5aa841a64da8416" 
+var inTheatersQuery = "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=" + currentDate + "&api_key=c81ffb7ed9813dd7f5aa841a64da8416"
 
 var individualMovie = "https://api.themoviedb.org/3/search/movie?api_key=c81ffb7ed9813dd7f5aa841a64da8416`&query=Jack+Reacher"
 
@@ -10,151 +10,151 @@ var popularQuery = "https://api.themoviedb.org/3/discover/movie?sort_by=populari
 var apiKey = "api_key=c81ffb7ed9813dd7f5aa841a64da8416"
 
 
-function threePopularMovies(){ 
+function threePopularMovies() {
   $.ajax({
     url: popularQuery,
     method: 'GET'
-  }) .then(function(res){
+  }).then(function (res) {
 
-    function genres(){
-      if(res.results[i].genre_ids == 28){
+    function genres() {
+      if (res.results[i].genre_ids == 28) {
         return "Action"
-      } 
-      else if(res.results[i].genre_ids == 12){
+      }
+      else if (res.results[i].genre_ids == 12) {
         return "Adventure"
       }
-      else if(res.results[i].genre_ids == 16){
+      else if (res.results[i].genre_ids == 16) {
         return "Animation"
       }
-      else if (res.results[i].genre_ids == 35){
+      else if (res.results[i].genre_ids == 35) {
         return "Comedy"
       }
-      else if (res.results[i].genre_ids == 80){
+      else if (res.results[i].genre_ids == 80) {
         return "Crime"
       }
-      else if (res.results[i].genre_ids == 99){
+      else if (res.results[i].genre_ids == 99) {
         return "Documentary"
       }
-      else if (res.results[i].genre_ids == 18){
+      else if (res.results[i].genre_ids == 18) {
         return "Drama"
       }
-      else if (res.results[i].genre_ids == 10751){
+      else if (res.results[i].genre_ids == 10751) {
         return "Family"
-      } 
-      else if (res.results[i].genre_ids == 14){
+      }
+      else if (res.results[i].genre_ids == 14) {
         return "Fantasy "
       }
-      else if (res.results[i].genre_ids == 36){
+      else if (res.results[i].genre_ids == 36) {
         return "History"
       }
-      else if (res.results[i].genre_ids == 27){
+      else if (res.results[i].genre_ids == 27) {
         return "Horror"
       }
-      else if (res.results[i].genre_ids ==10402){
+      else if (res.results[i].genre_ids == 10402) {
         return "Music"
       }
-      else if (res.results[i].genre_ids ==9648){
+      else if (res.results[i].genre_ids == 9648) {
         return "Mystery"
       }
-      else if (res.results[i].genre_ids == 10749){
+      else if (res.results[i].genre_ids == 10749) {
         return "Romance"
       }
-      else if (res.results[i].genre_ids == 878){
+      else if (res.results[i].genre_ids == 878) {
         return "Science Fiction"
       }
-      else if (res.results[i].genre_ids == 10770){
+      else if (res.results[i].genre_ids == 10770) {
         return "TV Movie"
       }
-      else if (res.results[i].genre_ids == 53){
+      else if (res.results[i].genre_ids == 53) {
         return "Thriller"
       }
-      else if (res.results[i].genre_ids == 10752){
+      else if (res.results[i].genre_ids == 10752) {
         return "War"
       }
-      else if (res.results[i].genre_ids == 37){
+      else if (res.results[i].genre_ids == 37) {
         return "Western"
       }
-    
-      }
+
+    }
 
     console.log(res)
-    for (var i = 0; i < 3; i++){
+    for (var i = 0; i < 3; i++) {
       var imgURL = res.results[i].poster_path
-      if (imgURL){
+      if (imgURL) {
         imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
-          var image =$('<img class="poster" alt= "Image Unavailable">').attr("src", imgURL);
-          var movieDiv = $('<div class= "movie">');
-          movieDiv.attr('data-title', res.results[i].title);
-          movieDiv.append(image);
-          var title= $('<h3 class="title">').append(res.results[i].title)
+        var image = $('<img class="poster" alt= "Image Unavailable">').attr("src", imgURL);
+        var movieDiv = $('<div class= "movie">');
+        movieDiv.attr('data-title', res.results[i].title);
+        movieDiv.append(image);
+        var title = $('<h3 class="title">').append(res.results[i].title)
 
-          var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
+        var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
           <h5 class="overview">${res.results[i].overview}</h5>
             <h5 class="releaseDate">${res.results[i].release_date}</h5>
                <h5 class="popularity">${res.results[i].popularity}</h5>
                   <h5 class="genre">${genres()}</h5>
                     <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>`
-                $('#movie').append(movieDiv).append(movieInfo)
+        $('#movie').append(movieDiv).append(movieInfo)
 
       }
     }
   })
 }
 
-function allPopularMovies(){
+function allPopularMovies() {
   $.ajax({
-        url: popularQuery,
-        method: 'GET'
-      }) .then(function(res){
-        console.log(res)
-        for (var i = 0; i < res.results.length; i++){
-          console.log(res.results[i])
+    url: popularQuery,
+    method: 'GET'
+  }).then(function (res) {
+    console.log(res)
+    for (var i = 0; i < res.results.length; i++) {
+      console.log(res.results[i])
 
-          var imgURL = res.results[i].poster_path
-          if (imgURL){
-            imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
-              var image =$('<img class="poster" alt= "Image Unavailable">').attr("src", imgURL);
-              var movieDiv = $('<div class= "movie">');
-              movieDiv.attr('data-title', res.results[i].title);
-              movieDiv.append(image);
-              var title= $('<h3 class="title">').append(res.results[i].title);
-    
-              var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
+      var imgURL = res.results[i].poster_path
+      if (imgURL) {
+        imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
+        var image = $('<img class="poster" alt= "Image Unavailable">').attr("src", imgURL);
+        var movieDiv = $('<div class= "movie">');
+        movieDiv.attr('data-title', res.results[i].title);
+        movieDiv.append(image);
+        var title = $('<h3 class="title">').append(res.results[i].title);
+
+        var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
               <h5 class="overview">${res.results[i].overview}</h5>
                 <h5 class="releaseDate">${res.results[i].release_date}</h5>
                    <h5 class="popularity">${res.results[i].popularity}</h5>
                     <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>`
-                    $('#movie').append(movieDiv).append(movieInfo)
+        $('#movie').append(movieDiv).append(movieInfo)
       }
-     }
+    }
   })
 }
 
 
 
-function threeOutNow(){
+function threeOutNow() {
   $.ajax({
     url: inTheatersQuery,
     method: 'GET'
   })
-  .then(function (res){
-    console.log(res)
-    
-    for ( var i =0; i<4; i++){
-      var imgURL = res.results[i].poster_path;
-      if(imgURL){
-        imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
+    .then(function (res) {
+      console.log(res)
 
-        var image =$('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
+      for (var i = 0; i < 4; i++) {
+        var imgURL = res.results[i].poster_path;
+        if (imgURL) {
+          imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
 
-        var movieDiv = $('<div class= "column">');
+          var image = $('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
 
-        movieDiv.attr('data-title', res.results[i].title);
+          var movieDiv = $('<div class= "column">');
 
-        movieDiv.append(image);
-      }
-      
-      var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
+          movieDiv.attr('data-title', res.results[i].title);
+
+          movieDiv.append(image);
+        }
+
+        var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
       <h5 class="overview">${res.results[i].overview}</h5>
         <h5 class="releaseDate">${res.results[i].release_date}</h5>
            <h5 class="popularity">${res.results[i].popularity}</h5>
@@ -163,10 +163,10 @@ function threeOutNow(){
 
                 <button><i class="fas fa-bookmark is-danger is-rounded"></i></button>`
 
-          $('#threeOutNow').append(movieDiv).append(movieInfo)
-    }
-  });
-} 
+        $('#threeOutNow').append(movieDiv).append(movieInfo)
+      }
+    });
+}
 
 
 threeOutNow()
@@ -177,116 +177,179 @@ threeOutNow()
 
 
 
-function allOutNow(){
+function allOutNow() {
   $.ajax({
     url: inTheatersQuery,
     method: 'GET'
   })
-  .then(function (res){
-    console.log(res)
-    
-    for (var i =0; i<res.results.length; i++){
-      var imgURL = res.results[i].poster_path;
-      if(imgURL){
-        imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
+    .then(function (res) {
+      console.log(res)
 
-        var image =$('<img class="poster" alt= "Image Unavailable">').attr("src", imgURL);
+      for (var i = 0; i < res.results.length; i++) {
+        var imgURL = res.results[i].poster_path;
+        if (imgURL) {
+          imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
 
-        var movieDiv = $('<div class= "movie">');
+          var image = $('<img class="poster" alt= "Image Unavailable">').attr("src", imgURL);
 
-        movieDiv.attr('data-title', res.results[i].title);
+          var movieDiv = $('<div class= "movie">');
 
-        movieDiv.append(image);
-      
-      
-      var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
+          movieDiv.attr('data-title', res.results[i].title);
+
+          movieDiv.append(image);
+
+
+          var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
       <h5 class="overview">${res.results[i].overview}</h5>
         <h5 class="releaseDate">${res.results[i].release_date}</h5>
            <h5 class="popularity">${res.results[i].popularity}</h5>
             <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>`
 
           $('#movie').append(movieDiv).append(movieInfo)
-    }}
-  });
-} 
+        }
+      }
+    });
+}
 
-function searched(){
-  $('.button').on("click",(event)=>{
+function searched() {
+  $('.button').on("click", (event) => {
+    $("#movie").empty();
     event.preventDefault()
-
-  
     const searchedMovie = $('.searchBox').val().trim().split(" ").join("+")
-  
     console.log(searchedMovie)
-  
     $.ajax({
       url: "https://api.themoviedb.org/3/search/movie?api_key=c81ffb7ed9813dd7f5aa841a64da8416&query=" + searchedMovie,
       method: "GET"
     })
-    .then(function(res){
-      console.log(res)
-    })
-  
-    })
-} 
+      .then(function (res) {
+        console.log(res)
+        for (var i = 0; i < 5; i++) {
+          var imgURL = res.results[i].poster_path;
+          if (imgURL) {
+            imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
 
+            var image = $('<img class="poster" alt= "Image Unavailable">').attr("src", imgURL);
+
+            var movieDiv = $('<div class= "movie">');
+
+            movieDiv.attr('data-title', res.results[i].title);
+
+            movieDiv.append(image);
+
+
+            var movieInfo = `<h3 class="title">${res.results[i].title}</h3>
+        <h5 class="overview">${res.results[i].overview}</h5>
+          <h5 class="releaseDate">${res.results[i].release_date}</h5>
+             <h5 class="popularity">${res.results[i].popularity}</h5>
+              <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
+              <br>
+              <button class="fav" data-id="${res.results[i].id}">Add To Favorites</button>
+              <br>
+              <button class="wl" data-id="${res.results[i].id}">Add To Watchlist</button>
+              <br>
+              `
+
+            $('#movie').append(movieDiv).append(movieInfo)
+          }
+        };
+      })
+  });
   
-function genres(){
-  if(res.results[i].genre_ids == 28){
+
+    $(".fav").click(()=>{
+      alert("Favorites button clicked");
+      let movieData = {
+        title: $(this).data("title"),
+          // plot:$("#plot").text(),
+          // poster: $("#image").attr("src")
+      }
+      $.post("/api/movies", movieData, function(data, status){
+          alert("Data: " + data + "\nStatus: " + status);
+        });
+  });
+}
+
+$(".wl").on("click", function(event) {
+  event.preventDefault();
+  alert("click");
+
+  // var id = $(this).data("id");
+
+  var newWatchlist = {
+    id: $(this).data("id"),
+    title: $(this).data("title"),
+    wantToWatch: 1,
+    favorite: 0
+  };
+
+  console.log(newWatchlist);
+  // Send the PUT request.
+  $.ajax("/api/movies/", {
+    type: "POST",
+    data: newWatchlist
+  }).then(function() {
+    console.log("changed movie to", newWatchlist);
+    // Reload the page to get the updated list
+    location.reload();
+  });
+});
+
+function genres() {
+  if (res.results[i].genre_ids == 28) {
     return "Action"
-  } 
-  else if(res.results[i].genre_ids == 12){
+  }
+  else if (res.results[i].genre_ids == 12) {
     return "Adventure"
   }
-  else if(res.results[i].genre_ids == 16){
+  else if (res.results[i].genre_ids == 16) {
     return "Animation"
   }
-  else if (res.results[i].genre_ids == 35){
+  else if (res.results[i].genre_ids == 35) {
     return "Comedy"
   }
-  else if (res.results[i].genre_ids == 80){
+  else if (res.results[i].genre_ids == 80) {
     return "Crime"
   }
-  else if (res.results[i].genre_ids == 99){
+  else if (res.results[i].genre_ids == 99) {
     return "Documentary"
   }
-  else if (res.results[i].genre_ids == 18){
+  else if (res.results[i].genre_ids == 18) {
     return "Drama"
   }
-  else if (res.results[i].genre_ids == 10751){
+  else if (res.results[i].genre_ids == 10751) {
     return "Family"
-  } 
-  else if (res.results[i].genre_ids == 14){
+  }
+  else if (res.results[i].genre_ids == 14) {
     return "Fantasy "
   }
-  else if (res.results[i].genre_ids == 36){
+  else if (res.results[i].genre_ids == 36) {
     return "History"
   }
-  else if (res.results[i].genre_ids == 27){
+  else if (res.results[i].genre_ids == 27) {
     return "Horror"
   }
-  else if (res.results[i].genre_ids ==10402){
+  else if (res.results[i].genre_ids == 10402) {
     return "Music"
   }
-  else if (res.results[i].genre_ids ==9648){
+  else if (res.results[i].genre_ids == 9648) {
     return "Mystery"
   }
-  else if (res.results[i].genre_ids == 10749){
+  else if (res.results[i].genre_ids == 10749) {
     return "Romance"
   }
-  else if (res.results[i].genre_ids == 878){
+  else if (res.results[i].genre_ids == 878) {
     return "Science Fiction"
   }
-  else if (res.results[i].genre_ids == 10770){
+  else if (res.results[i].genre_ids == 10770) {
     return "TV Movie"
   }
-  else if (res.results[i].genre_ids == 53){
+  else if (res.results[i].genre_ids == 53) {
     return "Thriller"
   }
-  else if (res.results[i].genre_ids == 10752){
+  else if (res.results[i].genre_ids == 10752) {
     return "War"
   }
-  else if (res.results[i].genre_ids == 37){
+  else if (res.results[i].genre_ids == 37) {
     return "Western"
   }
 
