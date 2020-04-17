@@ -9,6 +9,48 @@ var popularQuery = "https://api.themoviedb.org/3/discover/movie?sort_by=populari
 
 var apiKey = "api_key=c81ffb7ed9813dd7f5aa841a64da8416"
 
+$(document).on("click", ".favorite", function (event) {
+  // alert("DOES THIS DO SOMETHING??");
+  event.preventDefault();
+  var newWatchlist = {
+    poster: $(this).data("poster"),
+    title: $(this).data("title"),
+    wantToWatch: 0,
+    favorite: 1
+  };
+  console.log(newWatchlist);
+  // Send the PUT request.
+  $.ajax("/api/movies/", {
+    type: "POST",
+    data: newWatchlist
+  }).then(function() {
+    console.log("changed movie to", newWatchlist);
+    // Reload the page to get the updated list
+    location.reload();
+  });
+});
+
+
+$(document).on("click", ".watchlist", function (event) {
+  // alert("DOES THIS DO SOMETHING??");
+  event.preventDefault();
+  var newFavorite = {
+    poster: $(this).data("poster"),
+    title: $(this).data("title"),
+    wantToWatch: 1,
+    favorite: 0
+  };
+  console.log(newFavorite);
+  // Send the PUT request.
+  $.ajax("/api/movies/", {
+    type: "POST",
+    data: newFavorite
+  }).then(function() {
+    console.log("changed movie to", newFavorite);
+    // Reload the page to get the updated list
+    location.reload();
+  });
+});
 
 function threePopularMovies() {
   $.ajax({
@@ -130,8 +172,6 @@ function allPopularMovies() {
   })
 }
 
-
-
 function threeOutNow() {
   $.ajax({
     url: inTheatersQuery,
@@ -168,14 +208,7 @@ function threeOutNow() {
     });
 }
 
-
 threeOutNow()
-
-
-
-
-
-
 
 function allOutNow() {
   $.ajax({
@@ -243,9 +276,9 @@ function searched() {
              <h5 class="popularity">${res.results[i].popularity}</h5>
               <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
               <br>
-              <button class="favorite" data-id="${res.results[i].id}">Add To Favorites</button>
+              <button class="favorite" data-title="${res.results[i].title} data-poster="${res.results[i].poster_path}">Add To Favorites</button>
               <br>
-              <button class="watchlist" data-id="${res.results[i].id}">Add To Watchlist</button>
+              <button class="watchlist" data-title="${res.results[i].title} data-poster="${res.results[i].poster_path}">Add To Watchlist</button>
               <br>
               `
 
@@ -254,46 +287,7 @@ function searched() {
         };
       })
   });
-
-  $(document).on("click", ".favorite", function (event) {
-    // alert("DOES THIS DO SOMETHING??");
-    event.preventDefault();
-    var newWatchlist = {
-      id: $(this).data("id"),
-      title: $(this).data(".title"),
-      wantToWatch: 1,
-      favorite: 0
-    };
-
-    console.log(newWatchlist);
-    // Send the PUT request.
-    $.ajax("/api/movies/", {
-      type: "POST",
-      data: newWatchlist
-    }).then(function() {
-      console.log("changed movie to", newWatchlist);
-      // Reload the page to get the updated list
-      // location.reload();
-    });
-  });
-
-
-  $(document).on("click", ".watchlist", function (event) {
-    // alert("DOES THIS DO SOMETHING??");
-    event.preventDefault();
-    let movieData = {
-      id: $(this).data("id"),
-      title: $(this).data("title"),
-      watchlist: 1,
-      favorite: 0
-    }
-    $.post("/api/movies/", movieData, function (data, status) {
-      alert("Data: " + data + "\nStatus: " + status);
-    });
-  });
-
 }
-
 
 function genres() {
   if (res.results[i].genre_ids == 28) {

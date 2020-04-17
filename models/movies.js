@@ -5,6 +5,9 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
+    poster: {
+      type: DataTypes.STRING
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false
