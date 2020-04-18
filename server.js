@@ -3,9 +3,21 @@ var express = require("express");
 var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
+var mysql = require("mysql");
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
+
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "movies_db"
+  });
+}
 
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 8080;
