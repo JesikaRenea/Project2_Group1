@@ -41,9 +41,18 @@ The user needs to sign in before using the application
 
 MIT 
 
-## Contributing
+## Screenshots
+![Login](public/assets/SS_Home.png)
 
-By adding functionalities such as making reviews, or different styling. 
+![Dashboard](public/assets/SS_Dashboard.png)
 
+![User Profile](public/assets/SS_UserProfile.png)
 
+## Links 
+
+  [Deployed Heroku App](https://moviealister.herokuapp.com/)
+
+  [Github Repo](https://github.com/JesikaRenea/Project2_Group1)
+
+  [Presentation](https://docs.google.com/presentation/d/1Qvn_Sc907o8x8Smzyj3naSA5cVovAs_-vWCV99fZwnk/edit#slide=id.g7458464bff_0_11)
 
