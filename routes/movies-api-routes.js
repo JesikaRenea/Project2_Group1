@@ -34,6 +34,7 @@ module.exports = function(app) {
     console.log(req.body);
     console.log(req.user);
     db.Movie.create({
+      poster: req.body.poster,
       title: req.body.title,
       releaseDate: req.body.releaseDate,
       rating: req.body.rating,
@@ -60,6 +61,7 @@ module.exports = function(app) {
   app.put("/api/movies", function(req, res) {
     db.Movie.update(
       {
+        poster: req.body.poster,
         title: req.body.title,
         releaseDate: req.body.releaseDate,
         rating: req.body.rating,
