@@ -15,5 +15,15 @@ genre VARCHAR (120),
 favorite BOOLEAN DEFAULT false,
 wantToWatch BOOLEAN DEFAULT false,
 createdAt TIMESTAMP NOT NULL,
+updatedAt TIMESTAMP,
+PRIMARY KEY(id)
+);
+
+CREATE TABLE users (
+id INT NOT NULL auto_increment,
+email VARCHAR (300),
+password VARCHAR (300) NOT NULL,
+createdAt TIMESTAMP NOT NULL,
+updatedAt TIMESTAMP,
 PRIMARY KEY(id)
 );

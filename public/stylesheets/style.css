@@ -23,11 +23,17 @@ h3 {
 }
 
 .columns{
+  margin-top: 10px;
   background-color:gray;
   border-style: ridge;
   border-color: yellowgreen;
   border-radius: 5px;
 
+}
+
+.columnsTwo{
+  margin-top: 10px;
+  background-color: gray;
 }
 
 body{
@@ -47,7 +53,7 @@ body{
 }
 
 .moviePoster{
-  max-width: 200px;
+  width: 215px;
   max-height: 300px;
   /* float: left; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -86,10 +92,13 @@ body{
 }
 
 .searchBox {
-  width: 500px;}
+  margin-top: 12px;
+
+  width: 500px;
+}
 
   a {
-    color: white;
+    color: black;
     cursor: pointer;
     text-decoration: none;
 }
@@ -99,4 +108,12 @@ color: black;
 
 .btn {
   background-color: white
+}
+
+.button {
+  margin-top: 12px;
+}
+
+.modal-content {
+  padding: 20px;
 }

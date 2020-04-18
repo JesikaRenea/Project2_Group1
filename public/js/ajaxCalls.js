@@ -14,6 +14,17 @@ $(document).ready(function () {
   threePopularMovies();
 })
 
+$(document).on("click", "#moreOutNow", function (event){
+  event.preventDefault();
+  $("#threeOutNow").empty();
+  allOutNow();
+});
+
+$(document).on("click", "#morePopular", function (event){
+  event.preventDefault();
+  $("#threePopularMovies").empty();
+  allPopularMovies();
+})
 
 $(document).on("click", ".showModal", function (event) {
   $(`.modal[data-id=${$(this).data('id')}]`).addClass("is-active");
@@ -78,7 +89,7 @@ function threeOutNow() {
   })
     .then(function (res) {
       console.log(res)
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < 5; i++) {
         var imgURL = res.results[i].poster_path;
         if (imgURL) {
           imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
@@ -86,7 +97,7 @@ function threeOutNow() {
           var movieDiv = $('<div class= "column">');
           movieDiv.attr('data-title', res.results[i].title);
           var showModal = $(`<br> 
-          <button class="showModal" data-id="${res.results[i].id}"> Open Modal </button><br>
+          <button class="button showModal" data-id="${res.results[i].id}"> More Info </button>
           <button class="button favorite" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-heartbeat"
           aria-hidden="true"></i></button>
           <button class="button watchlist" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-eye"
@@ -98,10 +109,10 @@ function threeOutNow() {
       <div class="modal is-clipped" data-id= "${res.results[i].id}">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <h1 class="title has-text-warning">${res.results[i].title}</h1>
-        <h3 class="subtitle has-text-warning">Overview: ${res.results[i].overview}</h2>
-          <h5 class="subtitle has-text-warning">Release Date: ${res.results[i].release_date}</h5>
-            <h5 class= "subtitle has-text-warning">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
+        <h1 class="title has-text-success">${res.results[i].title}</h1>
+        <h3 class="subtitle has-text-success">Overview: ${res.results[i].overview}</h2>
+          <h5 class="subtitle has-text-success">Release Date: ${res.results[i].release_date}</h5>
+            <h5 class= "subtitle has-text-success">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
               <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
       
               </div>
@@ -128,47 +139,8 @@ function allOutNow() {
         var image = $('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
         var movieDiv = $('<div class= "column">');
         movieDiv.attr('data-title', res.results[i].title);
-        var showModal = $(`<button class="showModal" data-id="${res.results[i].id}"> Open Modal </button>`)
-        movieDiv.append(image).append(showModal);
-      }
-      var movieInfo = `
-      <div class="modal is-clipped" data-id= "${res.results[i].id}">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <h1 class="title has-text-warning">${res.results[i].title}</h1>
-        <h3 class="subtitle has-text-warning">Overview: ${res.results[i].overview}</h2>
-          <h5 class="subtitle has-text-warning">Release Date: ${res.results[i].release_date}</h5>
-            <h5 class= "subtitle has-text-warning">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
-              <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
-      </div>
-      <button class="modal-close is-large" data-id="${res.results[i].id} "aria-label="close"></button>
-  </div>
-  <button class="button favorite" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-heartbeat"
-  aria-hidden="true"></i></button>
-  <button class="button watchlist" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-eye"
-  alt="Add to Watchlist" aria-hidden="true"></i></button>
-      `
-      $('#threeOutNow').append(movieDiv).append(movieInfo)
-    }
-  });
-}
-
-function threePopularMovies(){ 
-  $.ajax({
-    url: popularQuery,
-    method: 'GET'
-  }) .then(function (res){
-    console.log(res)
-    for ( var i =0; i<3; i++){
-      var imgURL = res.results[i].poster_path;
-      if(imgURL){
-        imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
-        var image =$('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
-        var movieDiv = $('<div class= "column">');
-        movieDiv.attr('data-title', res.results[i].title);
-        var showModal = $(`
-        <br>
-        <button class="showModal" data-id="${res.results[i].id}"> Open Modal </button><br>
+        var showModal = $(`<br>
+        <button class="button showModal" data-id="${res.results[i].id}"> More Info </button> 
         <button class="button favorite" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-heartbeat"
         aria-hidden="true"></i></button>
         <button class="button watchlist" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-eye"
@@ -179,58 +151,100 @@ function threePopularMovies(){
       <div class="modal is-clipped" data-id= "${res.results[i].id}">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <h1 class="title has-text-warning">${res.results[i].title}</h1>
-        <h3 class="subtitle has-text-warning">Overview: ${res.results[i].overview}</h2>
-          <h5 class="subtitle has-text-warning">Release Date: ${res.results[i].release_date}</h5>
-            <h5 class= "subtitle has-text-warning">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
+        <h1 class="title has-text-success">${res.results[i].title}</h1>
+        <h3 class="subtitle has-text-success">Overview: ${res.results[i].overview}</h2>
+          <h5 class="subtitle has-text-success">Release Date: ${res.results[i].release_date}</h5>
+            <h5 class= "subtitle has-text-success">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
+              <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
+      </div>
+      <button class="modal-close is-large" data-id="${res.results[i].id} "aria-label="close"></button>
+  </div>
+ 
+      `
+      $('#threeOutNow').append(movieDiv).append(movieInfo)
+    }
+  });
+}
+
+function threePopularMovies() {
+  $.ajax({
+    url: popularQuery,
+    method: 'GET'
+  }).then(function (res) {
+    console.log(res)
+    for (var i = 0; i < 5; i++) {
+      var imgURL = res.results[i].poster_path;
+      if (imgURL) {
+        imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
+        var image = $('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
+        var movieDiv = $('<div class= "column">');
+        movieDiv.attr('data-title', res.results[i].title);
+        var showModal = $(`
+        <br>
+        <button class="button showModal" data-id="${res.results[i].id}"> More Info </button>
+        <button class="button favorite" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-heartbeat"
+        aria-hidden="true"></i></button>
+        <button class="button watchlist" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-eye"
+        alt="Add to Watchlist" aria-hidden="true"></i></button>`)
+        movieDiv.append(image).append(showModal);
+      }
+      var movieInfo = `
+      <div class="modal is-clipped" data-id= "${res.results[i].id}">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <h1 class="title has-text-success">${res.results[i].title}</h1>
+        <h3 class="subtitle has-text-success">Overview: ${res.results[i].overview}</h2>
+          <h5 class="subtitle has-text-success">Release Date: ${res.results[i].release_date}</h5>
+            <h5 class= "subtitle has-text-success">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
               <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
       </div>
       <button class="modal-close is-large" data-id="${res.results[i].id} "aria-label="close"></button>
 
   </div>
       `
-          $('#threePopularMovies').append(movieDiv).append(movieInfo)
+      $('#threePopularMovies').append(movieDiv).append(movieInfo)
     }
   });
 }
 
-function allPopularMovies(){
+function allPopularMovies() {
   $.ajax({
-        url: popularQuery,
-        method: 'GET'
-      })  .then(function (res){
-        console.log(res)
-        for ( var i =0; i<res.results.length; i++){
-          var imgURL = res.results[i].poster_path;
-          if(imgURL){
-            imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
-            var image =$('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
-            var movieDiv = $('<div class= "column">');
-            movieDiv.attr('data-title', res.results[i].title);
-            var showModal = $(`<button class="showModal" data-id="${res.results[i].id}"> Open Modal </button>`)
-            movieDiv.append(image).append(showModal);
-          }
-          var movieInfo = `
+    url: popularQuery,
+    method: 'GET'
+  }).then(function (res) {
+    console.log(res)
+    for (var i = 0; i < res.results.length; i++) {
+      var imgURL = res.results[i].poster_path;
+      if (imgURL) {
+        imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
+        var image = $('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
+        var movieDiv = $('<div class= "column">');
+        movieDiv.attr('data-title', res.results[i].title);
+        var showModal = $(`<br>
+        <button class="button showModal" data-id="${res.results[i].id}"> More Info </button>
+        <button class="button favorite" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-heartbeat"
+        aria-hidden="true"></i></button>
+        <button class="button watchlist" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-eye"
+        alt="Add to Watchlist" aria-hidden="true"></i></button>`)
+        movieDiv.append(image).append(showModal);
+      }
+      var movieInfo = `
           <div class="modal is-clipped" data-id= "${res.results[i].id}">
           <div class="modal-background"></div>
           <div class="modal-content">
     
-            <h1 class="title has-text-warning">${res.results[i].title}</h1>
-            <h3 class="subtitle has-text-warning">Overview: ${res.results[i].overview}</h2>
-              <h5 class="subtitle has-text-warning">Release Date: ${res.results[i].release_date}</h5>
-                <h5 class= "subtitle has-text-warning">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
+            <h1 class="title has-text-success">${res.results[i].title}</h1>
+            <h3 class="subtitle has-text-success">Overview: ${res.results[i].overview}</h2>
+              <h5 class="subtitle has-text-success">Release Date: ${res.results[i].release_date}</h5>
+                <h5 class= "subtitle has-text-success">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
                   <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
           </div>
           <button class="modal-close is-large" data-id="${res.results[i].id} "aria-label="close"></button>
       </div>
-      <button class="button favorite" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-heartbeat"
-      aria-hidden="true"></i></button>
-      <button class="button watchlist" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-eye"
-      alt="Add to Watchlist" aria-hidden="true"></i></button>
-          `
-              $('#threePopularMovies').append(movieDiv).append(movieInfo)
-        }
-      });
+           `
+      $('#threePopularMovies').append(movieDiv).append(movieInfo)
+    }
+  });
 }
 
 
@@ -254,7 +268,11 @@ function searched() {
             var image = $('<img class="moviePoster" alt= "Image Unavailable">').attr("src", imgURL);
             var movieDiv = $('<div class= "movie column">');
             movieDiv.attr('data-title', res.results[i].title);
-            var showModal = $(`<button class="button showModal" data-id="${res.results[i].id}"> Open Modal </button>`)
+            var showModal = $(`<br><button class="button showModal" data-id="${res.results[i].id}"> More Info </button>
+            <button class="button favorite" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-heartbeat"
+            aria-hidden="true"></i></button>
+            <button class="button watchlist" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-eye"
+            alt="Add to Watchlist" aria-hidden="true"></i></button>`)
             movieDiv.append(image).append(showModal);
             var movieInfo = `
             <div class="modal is-clipped" data-id= "${res.results[i].id}">
@@ -268,10 +286,6 @@ function searched() {
             </div>
             <button class="modal-close is-large" data-id="${res.results[i].id} "aria-label="close"></button>
             </div>
-              <button class="button favorite" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-heartbeat"
-              aria-hidden="true"></i></button>
-              <button class="button watchlist" data-title="${res.results[i].title}" data-poster="${res.results[i].poster_path}"><i class="fa fa-eye"
-              alt="Add to Watchlist" aria-hidden="true"></i></button>
               `
             $('#movie').append(movieDiv).append(movieInfo)
           }
