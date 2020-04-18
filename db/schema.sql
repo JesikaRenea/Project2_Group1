@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS favoritedMovies;
+DROP DATABASE IF EXISTS movies_db
 
-CREATE DATABASE favoritedMovies;
+CREATE DATABASE movies_db;
 
-USE favoritedMovies;
+USE movies_db;
 
 CREATE TABLE movies (
 id INT NOT NULL auto_increment PRIMARY KEY,
