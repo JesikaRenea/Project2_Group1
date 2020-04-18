@@ -89,7 +89,7 @@ function threeOutNow() {
   })
     .then(function (res) {
       console.log(res)
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < 8; i++) {
         var imgURL = res.results[i].poster_path;
         if (imgURL) {
           imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
@@ -132,7 +132,7 @@ function allOutNow() {
     method: 'GET'
   }).then(function (res) {
     console.log(res)
-    for (var i = 0; i < res.results.length; i++) {
+    for (var i = 0; i < 15; i++) {
       var imgURL = res.results[i].poster_path;
       if (imgURL) {
         imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
@@ -213,7 +213,7 @@ function allPopularMovies() {
     method: 'GET'
   }).then(function (res) {
     console.log(res)
-    for (var i = 0; i < res.results.length; i++) {
+    for (var i = 0; i < 10; i++) {
       var imgURL = res.results[i].poster_path;
       if (imgURL) {
         imgURL = "https://image.tmdb.org/t/p/w500/" + imgURL
@@ -278,10 +278,10 @@ function searched() {
             <div class="modal is-clipped" data-id= "${res.results[i].id}">
             <div class="modal-background"></div>
             <div class="modal-content">
-              <h1 class="title has-text-warning">${res.results[i].title}</h1>
-              <h3 class="subtitle has-text-warning">Overview: ${res.results[i].overview}</h2>
-                <h5 class="subtitle has-text-warning">Release Date: ${res.results[i].release_date}</h5>
-                  <h5 class= "subtitle has-text-warning">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
+              <h1 class="title has-text-success">${res.results[i].title}</h1>
+              <h3 class="subtitle has-text-success">Overview: ${res.results[i].overview}</h2>
+                <h5 class="subtitle has-text-success">Release Date: ${res.results[i].release_date}</h5>
+                  <h5 class= "subtitle has-text-success">Movie Poplarity Rating: ${res.results[i].popularity} </h5>
                     <a href="https://www.themoviedb.org/movie/${res.results[i].id}${res.results[i].title}?language=en-US" target="_blank">Link to more info on ${res.results[i].title}</a>
             </div>
             <button class="modal-close is-large" data-id="${res.results[i].id} "aria-label="close"></button>
