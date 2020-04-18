@@ -16,7 +16,7 @@
   "production": {
     "username": "clzsnkpxvp5xb3nb",
     "password": "v4q5detcbdps83rt",
-    "database": "movies_db",
+    "database": "nzkr62hmfkz703ke",
     "host": "i2cpbxbi4neiupid.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
