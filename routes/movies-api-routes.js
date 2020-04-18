@@ -34,6 +34,7 @@ module.exports = function(app) {
     console.log(req.body);
     console.log(req.user);
     db.Movie.create({
+      poster: req.body.poster,
       title: req.body.title,
       releaseDate: req.body.releaseDate,
       rating: req.body.rating,
@@ -47,19 +48,20 @@ module.exports = function(app) {
   });
 
   app.delete("/api/movies/:id", function(req, res) {
-    db.Todo.destroy({
+    db.Movie.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbTodo) {
-      res.json(dbTodo);
+    }).then(function(dbMovie) {
+      res.json(dbMovie);
     });
   });
 
   //Update movies from Watchlist to Favorites
   app.put("/api/movies", function(req, res) {
-    db.Todo.update(
+    db.Movie.update(
       {
+        poster: req.body.poster,
         title: req.body.title,
         releaseDate: req.body.releaseDate,
         rating: req.body.rating,

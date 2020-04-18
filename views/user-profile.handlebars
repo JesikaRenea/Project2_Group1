@@ -1,6 +1,20 @@
 <div class="columns">
     <div class="column is-one-half">
 
+        <div class="profile-container">
+
+            <div>
+                <input class="searchBox input is-medium" type="text" placeholder="Search for a Movie">
+                <button class="button is-medium">Search!</button>
+                <div id="movie" class="column movie-container ">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
         <h3 class="sectionFont is-size-3">User Profile</h3>
 
         <br>
@@ -8,21 +22,27 @@
         <div class="profile-container">
             <h3 class="sectionFont is-size-3">Watchlist</h3>
 
-            <ul>
+            <div>
                 {{#each Movies}}
                 {{#if wantToWatch}}
 
-                <li class="movie-watchlist">
-                    {{title}}
+                <div class="movie-container movie-watchlist">
                     <br>
-                    <button class="addToFavorites" data-id="{{this.id}}">Add To Favorites</button>
-
-                    <button class="delete-movie" data-id="{{this.id}}">Delete Movie</button>
-                </li>
+                    <img class="moviePoster" src="https://image.tmdb.org/t/p/w500/{{poster}}" alt="poster">
+                    <br>
+                    <h3 class="sectionFont is-size-4">{{title}}</h3>
+                    <br>
+                    <button class="addToFavorites button" data-id="{{this.id}}"><i class="fa fa-heartbeat"
+                            aria-hidden="true"></i>
+                    </button>
+                    <button class="delete-movie button" data-id="{{this.id}}"><i class="fa fa-trash"
+                            aria-hidden="true"></i>
+                    </button>
+                </div>
 
                 {{/if}}
                 {{/each}}
-            </ul>
+            </div>
         </div>
 
         <br>
@@ -34,12 +54,17 @@
                 {{#each Movies}}
                 {{#if favorite}}
 
-                <li class="movie-favorite">
-                    {{title}}
+                <li class="movie-container movie-favorite">
                     <br>
-                    <button class="addToWatchlist" data-id="{{this.id}}">Add To Watchlist</button>
-
-                    <button class="delete-movie" data-id="{{this.id}}">Delete Movie</button>
+                    <img class="moviePoster" src="https://image.tmdb.org/t/p/w500/{{poster}}" alt="poster">
+                    <br>
+                    <h3 class="sectionFont is-size-4">{{title}}</h3>
+                    <br>
+                    <button class="addToWatchlist button" data-id="{{this.id}}"><i class="fa fa-eye"
+                            alt="Add to Watchlist" aria-hidden="true"></i>
+                    </button> <button class="delete-movie button" data-id="{{this.id}}"><i class="fa fa-trash"
+                            aria-hidden="true"></i>
+                    </button>
                 </li>
 
                 {{/if}}
@@ -54,14 +79,24 @@
 
             <ul>
                 {{#each Movies}}
-                <li>
-                    {{this.title}}
+                <li class="movie-container">
+                    <img class="moviePoster" src="https://image.tmdb.org/t/p/w500/{{poster}}" alt="poster">
                     <br>
-                    <button class="addToWatchlist" data-id="{{this.id}}">Add To Watchlist</button>
 
-                    <button class="addToFavorites" data-id="{{this.id}}">Add To Favorites</button>
+                    <h3 class="sectionFont is-size-4">{{title}}</h3>
+                    <br>
+                    <button class="addToWatchlist button" data-id="{{this.id}}"><i class="fa fa-eye"
+                            alt="Add to Watchlist" aria-hidden="true"></i>
+                    </button>
 
-                    <button class="delete-movie" data-id="{{this.id}}">Delete Movie</button>
+                    <button class="addToFavorites button" data-id="{{this.id}}"><i class="fa fa-heartbeat"
+                            aria-hidden="true"></i>
+                    </button>
+
+                    <button class="delete-movie button" data-id="{{this.id}}"><i class="fa fa-trash"
+                            aria-hidden="true"></i>
+                    </button>
+                    <br><br>
 
                 </li>
                 {{/each}}
@@ -70,41 +105,6 @@
 
     </div>
 </div>
-
-<div class="columns">
-    <div class="column is-one-half">
-        <div class="profile-container">
-
-            <h3 class="sectionFont is-size-3">Search for a Movie</h3>
-
-            <div>
-                <label for="newmovie">Movie Title:</label>
-                <input class="searchBox" type="text" placeholder="inputMovies">
-                <button class="button">Search!</button>
-
-            </div>
-
-
-
-            <form class="create-form">
-
-                <div class="form-group">
-                    <label for="newmovie">Movie Title:</label>
-                    <input type="text" id="newmovie" name="title" class="searchBox">
-                </div>
-
-                <div class="form-group">
-                    <label for="list">List:</label><br>
-                    <input type="radio" name="wantToWatch" value="1" checked> Add to Watchlist<br>
-                    <input type="radio" name="favorite" value="1"> Add to Favorites
-                </div>
-
-                <button type="submit">Add Movie To List</button>
-            </form>
-        </div>
-    </div>
-</div>
-
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -115,9 +115,3 @@
         </div>
     </div>
 </nav>
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="./js/movies.js"></script>
-<script src="./js/ajaxCalls.js"></script>
